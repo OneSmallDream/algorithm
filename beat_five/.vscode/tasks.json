@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "clang++",
             "args": [
-                "lc_solve_0129.cpp"
+                "lc_solve_0130.cpp"
             ],
             "group": {
                 "kind": "build",

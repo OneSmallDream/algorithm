@@ -105,10 +105,7 @@ int Lcalg::lc154(vector<int>& nums){
 }
 
 int main(int argc, const char * argv[]) {
-    int arr[5] = {1,2,1,2,1};
-    vector<int> nums(arr, arr+5);
-    Lcalg lc;
-    int res = lc.lc162(nums);
-    cout  << "  输出: " << res << endl;
+    string a = "hello world!";
+    cout << a.substr(1, 3) << endl;
     return 0;
 }

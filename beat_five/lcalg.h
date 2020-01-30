@@ -30,6 +30,17 @@ public:
     int lc153(vector<int>& nums);
     // 相对与lc153, lc154增加了元素可能重复的条件
     int lc154(vector<int>& nums);
+    // 给定一个字符串，逐个翻转字符串中的每个单词。
+    // 无空格字符构成一个单词。
+    // 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
+    // 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
+    string lc151(string s);
+    // lc155 最小栈
+    // class MinStack{}
+    // lc166
+    // 给定两个整数，分别表示分数的分子 numerator 和分母 denominator，以字符串形式返回小数。
+    // 如果小数部分为循环小数，则将循环的部分括在括号内。
+    string lc166(int numerator, int denominator);
 };
 
 #endif
