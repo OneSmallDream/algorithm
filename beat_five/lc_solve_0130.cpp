@@ -140,9 +140,8 @@ string Lcalg::lc166(int numerator, int denominator) {
 }
 
 int main(int argc, const char * argv[]) {
-    Lcalg l;
-    int a = -50;
-    int b = 8;
-    string res = l.lc166(a, b);
-    cout << res << endl;
+    string a = "12";
+    if (a[0] != '1') {
+        return 0;
+    }
 }

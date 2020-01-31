@@ -41,6 +41,9 @@ public:
     // 给定两个整数，分别表示分数的分子 numerator 和分母 denominator，以字符串形式返回小数。
     // 如果小数部分为循环小数，则将循环的部分括在括号内。
     string lc166(int numerator, int denominator);
+    // 比较两个版本号 version1 和 version2。
+    // 如果 version1 > version2 返回 1，如果 version1 < version2 返回 -1， 除此之外返回 0。
+    int lc165(string version1, string version2);
 };
 
 #endif
