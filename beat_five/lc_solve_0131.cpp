@@ -87,11 +87,23 @@ int Lcalg::lc165(string version1, string version2) {
     return res;
 }
 
+int Lcalg::lc171(string s) {
+    // 跟lc168是相反的，进制相关
+    if (s.size() == 0) return -1;
+
+    int res = 0;
+    int i = s.size()-1;
+    while (i >= 0) {
+
+        int cur_pow = (s.size()-1-i);
+        int left_part = (char)(s[i] - 'A' + 1);
+        res += left_part * pow(26, cur_pow);
+        i--;
+
+    }
+    return res;
+}
+
 int main() {
-    string v1 = "7.8";
-    string v2 = "8.1";
-    Lcalg l;
-    int res = l.lc165(v1, v2);
-    cout << res << endl;
     return 0;
 }
