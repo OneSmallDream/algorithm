@@ -21,6 +21,10 @@ public:
     vector<int> inorderTraveral(TreeNode* root);
     // 二叉树转按照中序遍历的顺序转换成双向链表
     TreeNode* convert(TreeNode* root);
+    // 全排列
+    void Permutation(char* pStr);
+    // 子集
+    vector<vector<int> > subsets(vector<int>& nums);
 };
 
 

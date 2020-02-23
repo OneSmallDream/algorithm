@@ -5,8 +5,6 @@
 
 using namespace std;
 
-
-
 // 今天晚上闲来无事，突然想起来当初说要每天刷5道题，每周看两篇论文的誓言
 // 由于工作比较忙（lan）不小心忘记了，今天开始要重新捡起这个习惯，保持每天刷题，每周看论文的习惯，保持竞争力！！
 // 话不多说, 开始分析题目吧 -- 20200210 10:08
@@ -30,6 +28,7 @@ void convertNode(TreeNode* node, TreeNode** recordLastNode) {
     }
 
     // 上面的递归已经将该节点的左子树全部处理完成, 现在处理当前节点
+    // 将当前节点的向左指向上一次调整的最后一个节点, 同时将上一次调整的最后一个节点向右指向当前节点, 同时别忘记更新最
     curNode->left = *recordLastNode;
     if (*recordLastNode) {
         // 这里一定要加上括号
@@ -52,6 +51,9 @@ TreeNode* Algpoints::convert(TreeNode* root) {
     }
     return pHead;
 }
+
+// 动态规划入门
+
 
 
 
