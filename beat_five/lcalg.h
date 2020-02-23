@@ -46,6 +46,10 @@ public:
     // 比较两个版本号 version1 和 version2。
     // 如果 version1 > version2 返回 1，如果 version1 < version2 返回 -1， 除此之外返回 0。
     int lc165(string version1, string version2);
+    // 地下城游戏
+    int lc174(vector<vector<int> >& dungeon);
+    // 整数拆分后最大乘积
+    int lc343(int n);
 };
 
 #endif
