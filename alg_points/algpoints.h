@@ -41,7 +41,8 @@ public:
     // 栈内存放的是值得index，从栈底到栈顶，index对应得值是从小到大的
     unordered_map<int, pair<int, int> > getNearLessNoRepeat(vector<int> nums);
     unordered_map<int, pair<int, int> > getNearLessWithRepeat(vector<int> nums);
-    // todo 最大全1方阵
+    // todo 最大全1方阵 或者矩阵
+    int maxRectangle(vector<vector<int> > nums);
     
 };
 
