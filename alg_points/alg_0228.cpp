@@ -1,5 +1,8 @@
 # include <iostream>
 # include <vector>
+# include <stack>
+# include <unordered_map>
+# include "algpoints.h"
 
 using namespace std;
 
@@ -52,7 +55,7 @@ Subsquare findSubsquare(vector<vector<int> > matrix, int subSize) {
     return Subsquare(-1, -1, -1);
 }
 
-Subsquare findMaxBlackSubsquare(vector<vector<int> > matrix) {
+Subsquare Algpoints::findMaxBlackSubsquare(vector<vector<int> > matrix) {
     int size = matrix.size();
     for (int i = size; i >= 1; i--) {
         Subsquare square = findSubsquare(matrix, i);
@@ -95,7 +98,7 @@ vector<vector<pair<int, int> > > process(vector<vector<int> > matrix) {
 }
 
 // 最外层遍历边长O(N)，内层遍历矩阵左上侧点O(N^2), 最内层遍历O(N), 总时间复杂度O(N^4)
-// 优化方法，利用空间换取时间，最原始矩阵进行预处理，使得判断是否有效的过程从O(N) -> O(1)
+// 优化方法，利用空间换取时间，最原始矩阵进行预处理，使得判断是否有效的过程从O(N) -> O(1), 从而总时间复杂度为O(N^3)
 Subsquare findMaxBlackSubsquare_v2(vector<vector<int> > matrix) {
     // 1. 对原始矩阵进行预处理
     // 2. 针对边长由大到小遍历，找有效方阵
@@ -107,4 +110,81 @@ Subsquare findMaxBlackSubsquare_v2(vector<vector<int> > matrix) {
         // 判断方阵有无效的方法为 isValidSubsquareV2
     }
     
+}
+
+// 单调栈，非常重要的概念。在很多题目上都有应用。
+unordered_map<int, pair<int, int>> Algpoints::getNearLessNoRepeat(vector<int> nums) {
+
+    unordered_map<int, pair<int, int> > result;
+    stack<int> st;
+
+    for (int i = 0; i < nums.size(); i++) {
+        // 压栈条件
+        if (st.empty() || nums[st.top()] < nums[i]) {
+            st.push(i);
+            continue;
+        }
+        
+        // 否则出栈, 计算当前栈顶值的相关信息
+        while (!st.empty() && nums[st.top()] > nums[i]) {
+            int popIndex = st.top();
+            st.pop();
+            int leftLessIndex = st.empty() ? -1 : st.top();
+            int rightLessIndex = i;
+            result[popIndex] = make_pair(leftLessIndex, rightLessIndex);
+        }
+    }
+
+    // 最后很有可能在栈里还存在元素，从下到上递增,他们的右侧没有比他们再小的
+    while (!st.empty()) {
+        int popIndex = st.top();
+        st.pop();
+        int leftLessIndex = st.empty() ? -1 : st.top();
+        int rightLessIndex = -1;
+        result[popIndex] = make_pair(leftLessIndex, rightLessIndex);
+    }
+    return result;
+}
+
+// 这里是数组可能存在重复的情况, 即更通用的解法。
+// 在无重复的情况下，压入栈的是index，在有重复的情况下，压入栈的是index的vector
+unordered_map<int, pair<int, int> > Algpoints::getNearLessWithRepeat(vector<int> nums) {
+    unordered_map<int, pair<int, int> > result;
+    stack<vector<int> > st;
+
+    for (int i = 0; i < nums.size(); i++) {
+        // 进栈情况1 -- 当前遍历元素 大于 栈顶元素
+        if (st.empty() || nums[st.top()[0]] < nums[i]) {
+            vector<int> curVec;
+            curVec.push_back(i);
+            st.push(curVec);
+            continue;
+        }else if (!st.empty() && nums[st.top()[0]] == nums[i]) {
+            // 进栈情况2 -- 当前遍历元素 与 栈顶元素 相等
+            st.top().push_back(i);
+            continue;
+        }
+
+        //出栈并计算相关结果 -- 此时当前遍历元素 小于 栈顶元素
+        while (!st.empty() && nums[st.top()[0]] > nums[i]) {
+            vector<int> popIndexVec = st.top();
+            st.pop();
+            int leftLessIndex = st.empty() ? -1 : st.top()[st.top().size()-1];
+            for (auto index : popIndexVec) {
+                result[index] = make_pair(leftLessIndex, i);
+            }
+        }
+    } 
+
+    // 对栈内遗留元素进行处理, 此时遗留元素由下到上一次递增, 且他们在数组里右侧没有小于它们的元素
+    while (!st.empty()) {
+        vector<int> popIndexVec = st.top();
+        st.pop();
+        int leftLessIndex = st.empty() ? -1 : st.top()[st.top().size()-1];
+        for (auto index : popIndexVec) {
+            result[index] = make_pair(leftLessIndex, -1);
+        }
+    }
+
+    return result;
 }
