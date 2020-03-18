@@ -188,3 +188,38 @@ unordered_map<int, pair<int, int> > Algpoints::getNearLessWithRepeat(vector<int>
 
     return result;
 }
+
+int main() {
+    
+    vector<int> nums;
+    nums.push_back(0);
+    nums.push_back(0);
+    nums.push_back(0);
+    nums.push_back(0);
+    nums.push_back(0);
+    nums.push_back(0);
+    
+    int pre=0, cur=0;
+
+    int maxSize = 0;
+    
+    while (cur < nums.size()) {
+        // pre cur共同移动
+        while (cur < nums.size() && pre < nums.size() && nums[pre] == 0 && nums[cur] == 0) {
+            pre++;
+            cur++;
+        }
+        // cur单独移动
+        while (cur < nums.size() && nums[cur] > 0) {
+            cur++;
+        }
+        // 此时cur为非0元素或界外, 计算当前面积
+        if (pre < nums.size()) {
+            maxSize = max(maxSize, (cur-pre)*nums[pre]);
+        }else break;
+        pre = cur;
+
+    }
+
+    cout << maxSize << endl;
+}

@@ -33,6 +33,7 @@ public:
     void Permutation(char* pStr);
     // 子集
     vector<vector<int> > subsets(vector<int>& nums);
+    // todo 建堆，插入，弹出等操作
     // todo 数据流的中位数
     // 最大黑边方阵
     Subsquare findMaxBlackSubsquare(vector<vector<int> > matrix);
@@ -41,8 +42,9 @@ public:
     // 栈内存放的是值得index，从栈底到栈顶，index对应得值是从小到大的
     unordered_map<int, pair<int, int> > getNearLessNoRepeat(vector<int> nums);
     unordered_map<int, pair<int, int> > getNearLessWithRepeat(vector<int> nums);
-    // todo 最大全1方阵 或者矩阵
     int maxRectangle(vector<vector<int> > nums);
+    // 给定一个具有n个顶点的图，要给图上的每个顶点涂色，并且要使相邻的顶点颜色不同。问是否能最多用2种颜色进行染色
+
     
 };
 
