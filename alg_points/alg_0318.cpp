@@ -134,7 +134,7 @@ int addNonDependent(vector<pair<Project, int> >& order, vector<Project> projects
     return offset;
 }
 
-vector<Project> getOrderedCompileProjects(vector<Project>& projects) {
+vector<pair<Project, int>> getOrderedCompileProjects(vector<Project>& projects) {
     vector<pair<Project, int> > order;
     for (int i = 0; i < projects.size(); i++) {
         order.push_back(make_pair(projects[i], 0));
