@@ -4,6 +4,7 @@ package algorithm;
 import header.TrieNode;
 
 //英文版本--基础
+// 这里几乎没什么用，所以不写测试代码了
 public class Trie {
     private TrieNode root;
     public Trie() {
